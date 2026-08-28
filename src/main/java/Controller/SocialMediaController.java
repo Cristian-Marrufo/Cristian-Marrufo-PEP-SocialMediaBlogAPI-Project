@@ -2,7 +2,6 @@ package Controller;
 
 import io.javalin.Javalin;
 import io.javalin.http.Context;
-import com.fasterxml.jackson.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -32,7 +31,7 @@ public class SocialMediaController {
      */
     public Javalin startAPI() {
         Javalin app = Javalin.create();
-        //app.get("example-endpoint", this::exampleHandler);
+        app.get("example-endpoint", this::exampleHandler);
 
         app.post("/registration", this::registrationHandler);
 
