@@ -3,10 +3,12 @@ package Controller;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 import com.fasterxml.jackson.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.*;
 import Service.SocialMediaService;
+import DAO.SocialMediaDAO;
 import Model.Account;
 import Model.Message;
 
@@ -45,12 +47,21 @@ public class SocialMediaController {
         context.json("sample text");
     }
 
-    private void registrationHandler(Context context) {
+    private void registrationHandler(Context context) throws JsonProcessingException{
         
+        SocialMediaDAO dao = new SocialMediaDAO();
         ObjectMapper mapper = new ObjectMapper();
-        //Account newAccount = mapper.readValue(context.body(), Account.class);
+        Account newAccount = mapper.readValue(context.body(), Account.class);
 
-
+        Account createdAccount = services.getNewAccount(newAccount);
+        if(createdAccount != null) {
+            context.json(createdAccount);
+            context.status(200);
+        } else if(dao.getAccountByUsername(newAccount.getUsername()) != null){
+            context.status(409);
+        } else {
+            context.status(400);
+        }
     }
 
 
