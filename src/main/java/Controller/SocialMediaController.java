@@ -2,6 +2,7 @@ package Controller;
 
 import io.javalin.Javalin;
 import io.javalin.http.Context;
+import Service.SocialMediaService;
 
 /**
  * TODO: You will need to write your own endpoints and handlers for your controller. The endpoints you will need can be
