@@ -35,6 +35,7 @@ public class SocialMediaController {
 
         app.post("/register", this::registrationHandler);
 
+        app.start(8080);
         return app;
     }
 
