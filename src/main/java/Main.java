@@ -9,7 +9,7 @@ import Util.ConnectionUtil;
 public class Main {
     public static void main(String[] args) {
 
-        ConnectionUtil.resetTestDatabase();
+        //ConnectionUtil.resetTestDatabase();
 
         SocialMediaController controller = new SocialMediaController();
         Javalin app = controller.startAPI();

@@ -63,6 +63,4 @@ public class SocialMediaController {
             context.status(400);
         }
     }
-
-
 }
