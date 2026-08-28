@@ -18,7 +18,7 @@ public class SocialMediaService {
     String username = newAccount.getUsername();
     int passLength = (newAccount.getPassword()).length();
 
-    if((username != null) && (dao.getAccountByUsername(username) == null) && (passLength >= 4)) {
+    if((newAccount.getUsername() != null) && (dao.getAccountByUsername(username) == null) && (passLength >= 4)) {
 
       return dao.createAccount(newAccount);
     }

@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.*;
 import Service.SocialMediaService;
-import DAO.SocialMediaDAO;
 import Model.Account;
 import Model.Message;
 
@@ -48,7 +47,6 @@ public class SocialMediaController {
 
     private void registrationHandler(Context context) throws JsonProcessingException{
         
-        SocialMediaDAO dao = new SocialMediaDAO();
         ObjectMapper mapper = new ObjectMapper();
         
         Account newAccount = mapper.readValue(context.body(), Account.class);
