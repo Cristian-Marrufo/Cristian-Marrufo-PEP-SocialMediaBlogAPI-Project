@@ -3,8 +3,12 @@ package Controller;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 import com.fasterxml.jackson.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.*;
 import Service.SocialMediaService;
+import Model.Account;
+import Model.Message;
 
 /**
  * TODO: You will need to write your own endpoints and handlers for your controller. The endpoints you will need can be
@@ -13,7 +17,11 @@ import Service.SocialMediaService;
  */
 public class SocialMediaController {
 
-    //SocialMediaService services;
+    SocialMediaService services;
+
+    public SocialMediaController() {
+        this.services = new SocialMediaService();
+    }
 
     /**
      * In order for the test cases to work, you will need to write the endpoints in the startAPI() method, as the test
@@ -24,6 +32,8 @@ public class SocialMediaController {
         Javalin app = Javalin.create();
         app.get("example-endpoint", this::exampleHandler);
 
+        app.post("/registration", this::registrationHandler);
+
         return app;
     }
 
@@ -33,6 +43,14 @@ public class SocialMediaController {
      */
     private void exampleHandler(Context context) {
         context.json("sample text");
+    }
+
+    private void registrationHandler(Context context) {
+        
+        ObjectMapper mapper = new ObjectMapper();
+        //Account newAccount = mapper.readValue(context.body(), Account.class);
+
+
     }
 
 
