@@ -31,6 +31,8 @@ public class SocialMediaController {
         Javalin app = Javalin.create();
         app.get("/example-endpoint", this::exampleHandler);
 
+        // Endpoint for processing new user registrations
+            // post(): endpoint path, registrationHandler
         app.post("/register", this::registrationHandler);
 
         return app;
