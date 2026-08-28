@@ -57,8 +57,6 @@ public class SocialMediaController {
         if(createdAccount != null) {
             context.json(createdAccount);
             context.status(200);
-        } else if(dao.getAccountByUsername(newAccount.getUsername()) != null){
-            context.status(409);
         } else {
             context.status(400);
         }
