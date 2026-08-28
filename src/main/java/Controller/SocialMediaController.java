@@ -4,7 +4,6 @@ import io.javalin.Javalin;
 import io.javalin.http.Context;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.util.*;
 import Service.SocialMediaService;
 import Model.Account;
