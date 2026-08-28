@@ -51,9 +51,10 @@ public class SocialMediaController {
         
         SocialMediaDAO dao = new SocialMediaDAO();
         ObjectMapper mapper = new ObjectMapper();
+        
         Account newAccount = mapper.readValue(context.body(), Account.class);
-
         Account createdAccount = services.getNewAccount(newAccount);
+
         if(createdAccount != null) {
             context.json(createdAccount);
             context.status(200);
