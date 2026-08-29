@@ -209,6 +209,22 @@ public class SocialMediaDAO {
     return false;
   }
   
+  public List<Message> getMessagesByAccountId(int accountId) {
+    
+    Connection connection = ConnectionUtil.getConnection();
+    List<Message> messages = new ArrayList<>();
+
+    try {
+      String sql = "SELECT * FROM message WHERE posted_by=?";
+      
+
+    } catch(SQLException e) {
+      e.printStackTrace();
+    }
+
+
+    return messages;
+  }
   
   
 }

@@ -47,6 +47,8 @@ public class SocialMediaController {
         app.delete("/messages/{message_id}", this::messageDeletionByIdHandler);
         // Endpoint for updating a message by using message_id
         app.patch("/messages/{message_id}", this::messageUpdateHandler);
+        // Endpoint for retrieving all messages from a user using account_id
+        app.get("/accounts/{account_id}/messages", null);
         
         return app;
     }
