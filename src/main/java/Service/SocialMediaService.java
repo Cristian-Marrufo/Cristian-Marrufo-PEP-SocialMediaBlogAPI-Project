@@ -17,8 +17,9 @@ public class SocialMediaService {
 
     String username = newAccount.getUsername();
     int passLength = (newAccount.getPassword()).length();
+    Account retrievedAccount = dao.getAccountByUsername(username);
 
-    if((username != "") && (dao.getAccountByUsername(username) == null) && (passLength >= 4)) {
+    if((retrievedAccount == null) && (username != "") && (passLength >= 4)) {
 
       return dao.createAccount(newAccount);
     }
@@ -45,7 +46,20 @@ public class SocialMediaService {
     return null;
   }
 
+  public Message getNewMessage(Message newMessage) {
 
+    int accountId = newMessage.getPosted_by();
+    String messageText = newMessage.getMessage_text();
+    int messageLength = messageText.length();
+    Account userAccount = dao.getAccountById(accountId);
+
+    if((userAccount != null) && (messageText != "") && (messageLength <= 255)) {
+
+      return dao.createMessage(newMessage);
+    }
+
+    return null;
+  }
 
 
   

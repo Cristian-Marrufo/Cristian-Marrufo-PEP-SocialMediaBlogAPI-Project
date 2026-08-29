@@ -39,6 +39,8 @@ public class SocialMediaController {
         app.post("/register", this::registrationHandler);
         // Endpoint for processing login
         app.post("/login", this::loginHandler);
+        // Endpoint for processing new messages
+        app.post("/messages", this::messageCreationHandler);
         
         return app;
     }
@@ -79,7 +81,19 @@ public class SocialMediaController {
         }
     }
 
+    private void messageCreationHandler(Context context) throws JsonProcessingException {
 
+        ObjectMapper mapper = new ObjectMapper();
+        Message newMessage = mapper.readValue(context.body(), Message.class);
+        Message createdMessage = services.getNewMessage(newMessage);
+
+        if(createdMessage != null) {
+            context.json(createdMessage);
+            context.status(200);
+        } else {
+            context.status(400);
+        }
+    }
 
 
     
