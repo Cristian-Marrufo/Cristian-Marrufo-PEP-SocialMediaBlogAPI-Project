@@ -184,6 +184,31 @@ public class SocialMediaDAO {
 
     return false;
   }
+
+  public boolean updateMessageById(int messageId, String updatedText) {
+
+    Connection connection = ConnectionUtil.getConnection();
+
+    try {
+      String sql = "UPDATE message SET message_text=? WHERE message_id=?";
+      PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+      preparedStatement.setString(1, updatedText);
+      preparedStatement.setInt(2, messageId);
+
+      int checkUpdate = preparedStatement.executeUpdate();
+
+      if(checkUpdate > 0) {
+        return true;
+      }
+
+    } catch(SQLException e) {
+      e.printStackTrace();
+    }
+
+    return false;
+  }
+  
   
   
 }

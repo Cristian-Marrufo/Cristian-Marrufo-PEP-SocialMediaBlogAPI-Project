@@ -84,5 +84,20 @@ public class SocialMediaService {
     return null;
   }
 
+  public Message updateMsgById(int messageId, String updatedText) {
+
+    int messageLength = updatedText.length();
+    Message retrievedMessage = dao.getMessageById(messageId);
+
+    if((retrievedMessage != null) && (updatedText != "") && (messageLength <= 255)) {
+
+      dao.updateMessageById(messageId, updatedText);
+      retrievedMessage.setMessage_text(updatedText);
+      return retrievedMessage;
+    }
+
+    return null;
+  }
+
   
 }
