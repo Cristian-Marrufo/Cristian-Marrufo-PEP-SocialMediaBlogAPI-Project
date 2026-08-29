@@ -111,6 +111,30 @@ public class SocialMediaDAO {
     return null;
   }
 
+  public List<Message> getMessages() {
+
+    Connection connection = ConnectionUtil.getConnection();
+    List<Message> messages = new ArrayList<>();
+
+    try {
+      String sql = "SELECT * FROM message";
+      PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+      ResultSet resultSet = preparedStatement.executeQuery();
+
+      while(resultSet.next()) {
+
+        Message currentMessage = new Message(resultSet.getInt("message_id"), resultSet.getInt("posted_by"), 
+                                             resultSet.getString("message_text"), resultSet.getLong("time_posted_epoch"));
+        messages.add(currentMessage);
+      }
+
+    } catch(SQLException e) {
+      e.printStackTrace();
+    }
+
+    return messages;
+  }
   
   
 }

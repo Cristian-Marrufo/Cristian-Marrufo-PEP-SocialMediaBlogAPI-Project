@@ -5,9 +5,6 @@ import io.javalin.http.Context;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.*;
-
-import javax.naming.event.ObjectChangeListener;
-
 import Service.SocialMediaService;
 import Model.Account;
 import Model.Message;
@@ -42,6 +39,8 @@ public class SocialMediaController {
         app.post("/login", this::loginHandler);
         // Endpoint for processing new messages
         app.post("/messages", this::messageCreationHandler);
+        // Endpoint for retrieving all messages
+        app.get("/messages", this::allMessagesHandler);
         
         return app;
     }
@@ -96,6 +95,13 @@ public class SocialMediaController {
         }
     }
 
+    private void allMessagesHandler(Context context) {
+
+        List<Message> allMessages = services.getAllMessages();
+
+        context.json(allMessages);
+        context.status(200);
+    }
 
     
 }
