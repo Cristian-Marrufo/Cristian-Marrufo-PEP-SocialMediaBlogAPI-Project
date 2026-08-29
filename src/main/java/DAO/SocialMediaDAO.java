@@ -160,6 +160,30 @@ public class SocialMediaDAO {
 
     return null;
   }
+
+  public boolean deleteMessagebyId(int messageId) {
+
+    Connection connection = ConnectionUtil.getConnection();
+
+    try {
+      String sql = "DELETE FROM message WHERE message_id=?";
+      PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+      preparedStatement.setInt(1, messageId);
+
+      int checkDeletion = preparedStatement.executeUpdate();
+
+      if(checkDeletion > 0) {
+
+        return true;
+      }
+
+    } catch(SQLException e) {
+      e.printStackTrace();
+    }
+
+    return false;
+  }
   
   
 }

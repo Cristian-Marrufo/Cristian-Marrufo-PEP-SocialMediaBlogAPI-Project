@@ -43,6 +43,8 @@ public class SocialMediaController {
         app.get("/messages", this::allMessagesHandler);
         // Endpoint for retrieving a message by using message_id
         app.get("/messages/{message_id}", this::messageByIdHandler);
+        // Endpoint for deleting a message by using message_id
+        app.delete("/messages/{message_id}", this::messageDeletionByIdHandler);
         
         return app;
     }
@@ -115,6 +117,17 @@ public class SocialMediaController {
         }
         context.status(200);
     }
+
+   private void messageDeletionByIdHandler(Context context) {
+
+        int messageId = context.pathParamAsClass("message_id", Integer.class).get();
+        Message retrievedMessage = services.deleteMsgById(messageId);
+
+        if(retrievedMessage != null) {
+            context.json(retrievedMessage);
+        }
+        context.status(200);
+   }
 
    
     

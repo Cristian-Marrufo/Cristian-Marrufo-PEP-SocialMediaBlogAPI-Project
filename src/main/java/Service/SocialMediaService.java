@@ -71,5 +71,18 @@ public class SocialMediaService {
     return dao.getMessageById(messageId);
   }
 
+  public Message deleteMsgById(int messageId) {
+
+    Message retrievedMessage = dao.getMessageById(messageId);
+
+    if(retrievedMessage != null) {
+
+      dao.deleteMessagebyId(messageId);
+      return retrievedMessage;
+    }
+
+    return null;
+  }
+
   
 }
