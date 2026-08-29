@@ -139,7 +139,6 @@ public class SocialMediaDAO {
   public Message getMessageById(int messageId) {
 
     Connection connection = ConnectionUtil.getConnection();
-    Message retrievedMessage = new Message();
 
     try {
       String sql = "SELECT * FROM message WHERE message_id=?";
@@ -150,18 +149,16 @@ public class SocialMediaDAO {
       ResultSet resultSet = preparedStatement.executeQuery();
 
       while(resultSet.next()) {
-
-        retrievedMessage.setMessage_id(messageId);
-        retrievedMessage.setPosted_by(resultSet.getInt("posted_by"));
-        retrievedMessage.setMessage_text(resultSet.getString("message_text"));
-        retrievedMessage.setTime_posted_epoch(resultSet.getLong("time_posted_epoch"));
+        
+        return new Message(messageId, resultSet.getInt("posted_by"), 
+                                      resultSet.getString("message_text"), resultSet.getLong("time_posted_epoch"));
       }
 
     } catch(SQLException e) {
       e.printStackTrace();
     }
 
-    return retrievedMessage;
+    return null;
   }
   
   

@@ -110,7 +110,9 @@ public class SocialMediaController {
         int messageId = context.pathParamAsClass("message_id", Integer.class).get(); 
         Message retrievedMessage = services.getMsgById(messageId);
 
-        context.json(retrievedMessage);
+        if(retrievedMessage != null) {
+            context.json(retrievedMessage);
+        }
         context.status(200);
     }
 
