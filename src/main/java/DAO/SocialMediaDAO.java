@@ -44,6 +44,7 @@ public class SocialMediaDAO {
       PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
       preparedStatement.setString(1, username);
+      
       ResultSet resultSet = preparedStatement.executeQuery();
 
       while(resultSet.next()) {

@@ -28,9 +28,10 @@ public class SocialMediaController {
      * @return a Javalin app object which defines the behavior of the Javalin controller.
      */
     public Javalin startAPI() {
-        Javalin app = Javalin.create();
-        app.get("/example-endpoint", this::exampleHandler);
 
+        Javalin app = Javalin.create();
+
+        app.get("/example-endpoint", this::exampleHandler);
         // Endpoint for processing new user registrations
         app.post("/register", this::registrationHandler);
         
