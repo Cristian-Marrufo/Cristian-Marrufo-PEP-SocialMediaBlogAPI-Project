@@ -41,6 +41,8 @@ public class SocialMediaController {
         app.post("/messages", this::messageCreationHandler);
         // Endpoint for retrieving all messages
         app.get("/messages", this::allMessagesHandler);
+        // Endpoint for retrieving a message by using message_id
+        app.get("/messages/{message_id}", this::messageByIdHandler);
         
         return app;
     }
@@ -97,9 +99,18 @@ public class SocialMediaController {
 
     private void allMessagesHandler(Context context) {
 
-        List<Message> allMessages = services.getAllMessages();
+        List<Message> allMessages = services.getAllMsgs();
 
         context.json(allMessages);
+        context.status(200);
+    }
+
+    private void messageByIdHandler(Context context) {
+        
+        int messageId = context.pathParamAsClass("message_id", Integer.class).get(); 
+        Message retrievedMessage = services.getMsgById(messageId);
+
+        context.json(retrievedMessage);
         context.status(200);
     }
 

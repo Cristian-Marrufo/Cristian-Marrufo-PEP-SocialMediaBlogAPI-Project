@@ -61,9 +61,14 @@ public class SocialMediaService {
     return null;
   }
 
-  public List<Message> getAllMessages() {
+  public List<Message> getAllMsgs() {
 
     return dao.getMessages();
+  }
+
+  public Message getMsgById(int messageId) {
+
+    return dao.getMessageById(messageId);
   }
 
   

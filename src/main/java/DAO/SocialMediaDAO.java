@@ -135,6 +135,34 @@ public class SocialMediaDAO {
 
     return messages;
   }
+
+  public Message getMessageById(int messageId) {
+
+    Connection connection = ConnectionUtil.getConnection();
+    Message retrievedMessage = new Message();
+
+    try {
+      String sql = "SELECT * FROM message WHERE message_id=?";
+      PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+      preparedStatement.setInt(1, messageId);
+
+      ResultSet resultSet = preparedStatement.executeQuery();
+
+      while(resultSet.next()) {
+
+        retrievedMessage.setMessage_id(messageId);
+        retrievedMessage.setPosted_by(resultSet.getInt("posted_by"));
+        retrievedMessage.setMessage_text(resultSet.getString("message_text"));
+        retrievedMessage.setTime_posted_epoch(resultSet.getLong("time_posted_epoch"));
+      }
+
+    } catch(SQLException e) {
+      e.printStackTrace();
+    }
+
+    return retrievedMessage;
+  }
   
   
 }
