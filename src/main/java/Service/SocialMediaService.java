@@ -25,5 +25,24 @@ public class SocialMediaService {
 
     return null;
   }
+
+  public Account verifyAccountLogin(Account userAccount) {
+
+    String username = userAccount.getUsername();
+    String password = userAccount.getPassword();
+    Account retrievedAccount = dao.getAccountByUsername(username);
+
+    if(retrievedAccount != null) {
+
+      String retrievedPass = retrievedAccount.getPassword();
+
+      if(retrievedPass.equals(password)) {
+        return retrievedAccount;
+      }
+      
+    }
+
+    return null;
+  }
   
 }
