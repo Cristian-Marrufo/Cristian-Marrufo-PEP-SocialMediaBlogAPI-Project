@@ -99,6 +99,10 @@ public class SocialMediaService {
     return null;
   }
   
+  public List<Message> getMsgsByAccountId(int accountId) {
+
+    return dao.getMessagesByAccountId(accountId);
+  }
 
   
 }

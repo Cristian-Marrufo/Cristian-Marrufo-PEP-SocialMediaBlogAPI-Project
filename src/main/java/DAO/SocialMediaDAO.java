@@ -234,9 +234,6 @@ public class SocialMediaDAO {
       e.printStackTrace();
     }
 
-
     return messages;
-  }
-  
-  
+  } 
 }
