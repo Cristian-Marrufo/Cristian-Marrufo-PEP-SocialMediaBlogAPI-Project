@@ -216,6 +216,18 @@ public class SocialMediaDAO {
 
     try {
       String sql = "SELECT * FROM message WHERE posted_by=?";
+      PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+      preparedStatement.setInt(1, accountId);
+
+      ResultSet resultSet = preparedStatement.executeQuery();
+
+      while(resultSet.next()) {
+
+        Message currentMessage = new Message(resultSet.getInt("message_id"), accountId, 
+                                             resultSet.getString("message_text"), resultSet.getLong("time_posted_epoch"));
+        messages.add(currentMessage);
+      }
       
 
     } catch(SQLException e) {
