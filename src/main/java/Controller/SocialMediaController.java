@@ -48,7 +48,7 @@ public class SocialMediaController {
         // Endpoint for updating a message by using message_id
         app.patch("/messages/{message_id}", this::messageUpdateHandler);
         // Endpoint for retrieving all messages from a user using account_id
-        app.get("/accounts/{account_id}/messages", this::;
+        app.get("/accounts/{account_id}/messages", this::messa;
         
         return app;
     }
