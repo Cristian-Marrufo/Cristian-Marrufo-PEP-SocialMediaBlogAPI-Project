@@ -229,7 +229,6 @@ public class SocialMediaDAO {
         messages.add(currentMessage);
       }
       
-
     } catch(SQLException e) {
       e.printStackTrace();
     }

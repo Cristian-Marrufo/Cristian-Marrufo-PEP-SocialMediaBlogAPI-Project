@@ -48,7 +48,7 @@ public class SocialMediaController {
         // Endpoint for updating a message by using message_id
         app.patch("/messages/{message_id}", this::messageUpdateHandler);
         // Endpoint for retrieving all messages from a user using account_id
-        app.get("/accounts/{account_id}/messages", this::messa;
+        app.get("/accounts/{account_id}/messages", this::allMessagesByAccountIdHandler);
         
         return app;
     }
@@ -151,7 +151,10 @@ public class SocialMediaController {
 
    private void allMessagesByAccountIdHandler(Context context) {
 
+        int accountId = context.pathParamAsClass("account_id", Integer.class).get();
+        List<Message> allMessages = services.getMsgsByAccountId(accountId);
+
+        context.json(allMessages);
+        context.status(200);
    }
-   
-    
 }
