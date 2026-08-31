@@ -44,11 +44,11 @@ public class SocialMediaController {
         // Endpoint for retrieving a message by using message_id
         app.get("/messages/{message_id}", this::messageByIdHandler);
         // Endpoint for deleting a message by using message_id
-        //app.delete("/messages/{message_id}", this::messageDeletionByIdHandler);
+        app.delete("/messages/{message_id}", this::messageDeletionByIdHandler);
         // Endpoint for updating a message by using message_id
-        //app.patch("/messages/{message_id}", this::messageUpdateHandler);
+        app.patch("/messages/{message_id}", this::messageUpdateHandler);
         // Endpoint for retrieving all messages from a user using account_id
-        //app.get("/accounts/{account_id}/messages", this::allMessagesByAccountIdHandler);
+        app.get("/accounts/{account_id}/messages", this::allMessagesByAccountIdHandler);
         
         return app;
     }
